@@ -21,7 +21,7 @@ function renderTable() {
   //input data
   $tbody.innerHTML = "";
   
-  for (var i = 0; i < 50; i++) {
+  for (var i = 0; i < filteredData.length; i++) {
     // Get get the current data object and its fields
     var sighting = filteredData[i];
     var fields = Object.keys(sighting);
@@ -52,15 +52,15 @@ function handleSearchButtonClick() {
 // Set filtereddatato an array of all data whose input matches the filter
   if (inputDate != ""){
     filteredData = dataSet.filter(function(sighting) {
-      var filteredDateTime = sighting.datetime;
+      var filteredDateTime = sighting.datetime.toLowerCase();
       return filteredDateTime === inputDate;
     });
   };
 
   if(inputCity  != ""){
     filteredData = dataSet.filter(function(sighting){
-      var filteredCity = sighting.city;
-      return filteredCity ===inputCity;
+      var filteredCity = sighting.city.toLowerCase();
+      return filteredCity === inputCity;
     });
   };
 
@@ -68,7 +68,7 @@ function handleSearchButtonClick() {
   {
     filteredData = dataSet.filter(function(sighting)
     {
-      var filteredState = sighting.state;
+      var filteredState = sighting.state.toLowerCase();
       return filteredState ===inputState;
     });
   };
@@ -77,7 +77,7 @@ function handleSearchButtonClick() {
   {
     filteredData = dataSet.filter(function(sighting)
     {
-      var filteredCountry = sighting.country;
+      var filteredCountry = sighting.country.toLowerCase();
       return filteredCountry === inputCountry;
     });
   };
@@ -87,7 +87,7 @@ function handleSearchButtonClick() {
     {
       filteredData = dataSet.filter(function(sighting)
       {
-        var filteredShape = sighting.shape;
+        var filteredShape = sighting.shape.toLowerCase();
         return filteredShape ===inputShape;
       });
     };
